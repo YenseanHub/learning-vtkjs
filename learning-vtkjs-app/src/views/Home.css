@@ -1,0 +1,20 @@
+.main-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+.main-container .example-card {
+  width: 13vw;
+  height: 14vw;
+  margin-top: 2vw;
+  border: 1px solid lightslategrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.main-container .example-img{
+  width: 12vw;
+}
