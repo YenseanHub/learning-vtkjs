@@ -22,12 +22,12 @@ export default class Viewer {
     this.renderWindow.render();
   }
   addCone() {
-    // const coneSource = vtkConeSource.newInstance({ height: 1.0 });
-    this.coneSource = vtkCubeSource.newInstance({
-      xLength: 5,
-      yLength: 5,
-      zLength: 5,
-    });
+    this.coneSource = vtkConeSource.newInstance({ height: 1.0 });
+    // this.coneSource = vtkCubeSource.newInstance({
+    //   xLength: 5,
+    //   yLength: 5,
+    //   zLength: 5,
+    // });
 
     this.mapper = vtkMapper.newInstance();
     let coneOutPut = this.coneSource.getOutputPort();
@@ -50,5 +50,8 @@ export default class Viewer {
     this.mapper.delete();
     this.coneSource.delete();
     this.fullScreenRenderer.delete();
+  }
+  render() {
+    this.renderWindow.render();
   }
 }

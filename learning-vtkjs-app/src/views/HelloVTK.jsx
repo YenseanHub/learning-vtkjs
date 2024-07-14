@@ -3,42 +3,37 @@ import Viewer from "../vtkView/Viewer";
 
 function HelloVTK() {
   const vtkContainerRef = useRef(null);
-  const context = useRef(null);
   const [coneResolution, setConeResolution] = useState(6);
   const [representation, setRepresentation] = useState(2);
+  let viewer3D = useRef(null);
 
   useEffect(() => {
-    if (!context.current) {
-      let viewer3D = new Viewer(vtkContainerRef.current);
-      viewer3D.init();
-      viewer3D.addCone();
-      context.current = {
-        viewer3D,
-      };
+    if (!viewer3D.current) {
+      viewer3D.current = new Viewer(vtkContainerRef.current);
+      viewer3D.current.init();
+      viewer3D.current.addCone();
     }
 
     return () => {
-      if (context.current) {
-        context.current.viewer3D.destory();
-        context.current = null;
+      if (viewer3D.current) {
+        viewer3D.current.destory();
+        viewer3D.current = null;
       }
     };
   }, [vtkContainerRef]);
 
   useEffect(() => {
-    // if (context.current) {
-    //   const { coneSource, renderWindow } = context.current;
-    //   // coneSource.setResolution(coneResolution);
-    //   renderWindow.render();
-    // }
+    if (viewer3D.current) {
+      viewer3D.current.coneSource.setResolution(coneResolution);
+      viewer3D.current.render();
+    }
   }, [coneResolution]);
 
   useEffect(() => {
-    // if (context.current) {
-    //   const { actor, renderWindow } = context.current;
-    //   actor.getProperty().setRepresentation(representation);
-    //   renderWindow.render();
-    // }
+    if (viewer3D.current) {
+      viewer3D.current.actor.getProperty().setRepresentation(representation);
+      viewer3D.current.render();
+    }
   }, [representation]);
 
   return (
