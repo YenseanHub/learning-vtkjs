@@ -1,9 +1,7 @@
 import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
+// Load the rendering pieces we want to use (for both WebGL and WebGPU)
 import "@kitware/vtk.js/Rendering/Profiles/Geometry";
-import vtkActor from "@kitware/vtk.js/Rendering/Core/Actor";
-import vtkMapper from "@kitware/vtk.js/Rendering/Core/Mapper";
-import vtkConeSource from "@kitware/vtk.js/Filters/Sources/ConeSource";
-import vtkCubeSource from "@kitware/vtk.js/Filters/Sources/CubeSource";
+import { createCone } from "./SourcePipeLine";
 
 export default class Viewer {
   constructor(domContainer) {
@@ -11,6 +9,8 @@ export default class Viewer {
     this.renderer = null;
     this.renderWindow = null;
     this.actorList = [];
+    this.mapperList = [];
+    this.sourceList = [];
   }
   init() {
     this.fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
@@ -22,33 +22,37 @@ export default class Viewer {
     this.renderWindow.render();
   }
   addCone() {
-    this.coneSource = vtkConeSource.newInstance({ height: 1.0 });
-    // this.coneSource = vtkCubeSource.newInstance({
-    //   xLength: 5,
-    //   yLength: 5,
-    //   zLength: 5,
-    // });
+    const { actor, mapper, coneSource } = createCone();
 
-    this.mapper = vtkMapper.newInstance();
-    let coneOutPut = this.coneSource.getOutputPort();
-
-    this.mapper.setInputConnection(coneOutPut);
-
-    this.actor = vtkActor.newInstance();
-    this.actor.setMapper(this.mapper);
-
-    this.renderer.addActor(this.actor);
+    this.renderer.addActor(actor);
+    this.actorList.push(actor);
+    this.mapperList.push(mapper);
+    this.sourceList.push(coneSource);
     this.resetCamera();
   }
   resetCamera() {
     this.renderer.resetCamera();
     this.renderWindow.render();
   }
-
+  setAllResolution(coneResolution) {
+    this.sourceList.forEach((item) => {
+      item.setResolution(coneResolution);
+    });
+  }
+  setAllRepresentation(representation) {
+    this.actorList.forEach((item) => {
+      item.getProperty().setRepresentation(representation);
+    });
+  }
+  clearList(arrayList) {
+    arrayList.forEach((item) => {
+      item.delete();
+    });
+  }
   destory() {
-    this.actor.delete();
-    this.mapper.delete();
-    this.coneSource.delete();
+    this.clearList(this.actor);
+    this.clearList(this.mapper);
+    this.clearList(this.sourceList);
     this.fullScreenRenderer.delete();
   }
   render() {

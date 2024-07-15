@@ -11,6 +11,7 @@ function HelloVTK() {
     if (!viewer3D.current) {
       viewer3D.current = new Viewer(vtkContainerRef.current);
       viewer3D.current.init();
+      // 添加一个锥体
       viewer3D.current.addCone();
     }
 
@@ -24,14 +25,14 @@ function HelloVTK() {
 
   useEffect(() => {
     if (viewer3D.current) {
-      viewer3D.current.coneSource.setResolution(coneResolution);
+      viewer3D.current.setAllResolution(coneResolution);
       viewer3D.current.render();
     }
   }, [coneResolution]);
 
   useEffect(() => {
     if (viewer3D.current) {
-      viewer3D.current.actor.getProperty().setRepresentation(representation);
+      viewer3D.current.setAllRepresentation(representation);
       viewer3D.current.render();
     }
   }, [representation]);
