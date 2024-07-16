@@ -13,6 +13,13 @@ function HelloVTK() {
       viewer3D.current.init();
       // 添加一个锥体
       viewer3D.current.addCone();
+      // 添加一个圆形
+      viewer3D.current.addCircle();
+      viewer3D.current.resetCamera();
+      // 添加一个箭头
+      viewer3D.current.addArrow();
+      // 添加一个同心圆
+      viewer3D.current.addConcentricCylinder();
     }
 
     return () => {
@@ -22,13 +29,13 @@ function HelloVTK() {
       }
     };
   }, [vtkContainerRef]);
-
-  useEffect(() => {
-    if (viewer3D.current) {
-      viewer3D.current.setAllResolution(coneResolution);
-      viewer3D.current.render();
-    }
-  }, [coneResolution]);
+  // 设置精度
+  // useEffect(() => {
+  //   if (viewer3D.current) {
+  //     viewer3D.current.setAllResolution(coneResolution);
+  //     viewer3D.current.render();
+  //   }
+  // }, [coneResolution]);
 
   useEffect(() => {
     if (viewer3D.current) {

@@ -1,7 +1,12 @@
 import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
 // Load the rendering pieces we want to use (for both WebGL and WebGPU)
 import "@kitware/vtk.js/Rendering/Profiles/Geometry";
-import { createCone } from "./SourcePipeLine";
+import {
+  createCone,
+  createCircle,
+  createArrow,
+  createConcentricCylinder,
+} from "./SourcePipeLine";
 
 export default class Viewer {
   constructor(domContainer) {
@@ -22,13 +27,23 @@ export default class Viewer {
     this.renderWindow.render();
   }
   addCone() {
-    const { actor, mapper, coneSource } = createCone();
-
+    this.addSource(createCone);
+  }
+  addCircle() {
+    this.addSource(createCircle);
+  }
+  addArrow() {
+    this.addSource(createArrow);
+  }
+  addConcentricCylinder() {
+    this.addSource(createConcentricCylinder);
+  }
+  addSource(sourceCb) {
+    const { actor, mapper, source } = sourceCb();
     this.renderer.addActor(actor);
     this.actorList.push(actor);
     this.mapperList.push(mapper);
-    this.sourceList.push(coneSource);
-    this.resetCamera();
+    this.sourceList.push(source);
   }
   resetCamera() {
     this.renderer.resetCamera();
@@ -45,9 +60,11 @@ export default class Viewer {
     });
   }
   clearList(arrayList) {
-    arrayList.forEach((item) => {
-      item.delete();
-    });
+    if (arrayList != null) {
+      arrayList.forEach((item) => {
+        item.delete();
+      });
+    }
   }
   destory() {
     this.clearList(this.actor);
