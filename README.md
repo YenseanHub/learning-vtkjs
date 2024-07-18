@@ -27,7 +27,8 @@ You may also see any lint errors in the console.
 
 ## learning  screenshot
 vtkSource
-![vtkSource](https://github.com/HugeYen/learning-vtkjs/blob/master/learning-vtkjs-app/public/images/vtkSource.png)
+
+![vtkSource](./learning-vtkjs-app/public/images/vtkSource.png)
 
 ## Learn More
 
