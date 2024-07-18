@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Viewer from "../vtkView/Viewer";
 
-function HelloVTK() {
+function VTKSource() {
   const vtkContainerRef = useRef(null);
   const [coneResolution, setConeResolution] = useState(6);
   const [representation, setRepresentation] = useState(2);
@@ -13,7 +13,27 @@ function HelloVTK() {
       viewer3D.current.init();
       // 添加一个锥体
       viewer3D.current.addCone();
+      // 添加一个圆形
+      viewer3D.current.addCircle();
       viewer3D.current.resetCamera();
+      // 添加一个箭头
+      viewer3D.current.addArrow();
+      // 添加一个同心圆
+      viewer3D.current.addConcentricCylinder();
+      // 添加一个方形
+      viewer3D.current.addCube();
+      // 包围盒
+      viewer3D.current.addCursor3D();
+      // 圆柱体
+      viewer3D.current.addCylinder();
+      // 线
+      viewer3D.current.addLine();
+      // 平面
+      viewer3D.current.addPlane();
+      // 点
+      viewer3D.current.addPoint();
+      // 球
+      viewer3D.current.addSphere();
     }
 
     return () => {
@@ -84,4 +104,4 @@ function HelloVTK() {
   );
 }
 
-export default HelloVTK;
+export default VTKSource;

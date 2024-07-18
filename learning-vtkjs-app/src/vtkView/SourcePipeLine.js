@@ -5,6 +5,12 @@ import vtkCircleSource from "@kitware/vtk.js/Filters/Sources/CircleSource";
 import vtkArrowSource from "@kitware/vtk.js/Filters/Sources/ArrowSource";
 import vtkConcentricCylinderSource from "@kitware/vtk.js/Filters/Sources/ConcentricCylinderSource";
 import vtkCubeSource from "@kitware/vtk.js/Filters/Sources/CubeSource";
+import vtkCursor3D from "@kitware/vtk.js/Filters/Sources/Cursor3D";
+import vtkCylinderSource from "@kitware/vtk.js/Filters/Sources/CylinderSource";
+import vtkLineSource from "@kitware/vtk.js/Filters/Sources/LineSource";
+import vtkPlaneSource from "@kitware/vtk.js/Filters/Sources/PlaneSource";
+import vtkPointSource from "@kitware/vtk.js/Filters/Sources/PointSource";
+import vtkSphereSource from "@kitware/vtk.js/Filters/Sources/SphereSource";
 
 export function createCone() {
   const source = vtkConeSource.newInstance({ height: 1.0 });
@@ -79,5 +85,97 @@ export function createConcentricCylinder() {
   actor.setMapper(mapper);
   mapper.setInputConnection(source.getOutputPort());
 
+  return { source, mapper, actor };
+}
+
+export function createCube() {
+  const source = vtkCubeSource.newInstance();
+  source.setCenter([2, -2, 0]);
+  const actor = vtkActor.newInstance();
+  const mapper = vtkMapper.newInstance();
+
+  actor.setMapper(mapper);
+  mapper.setInputConnection(source.getOutputPort());
+
+  return { source, mapper, actor };
+}
+
+export function createCursor3D() {
+  const source = vtkCursor3D.newInstance();
+  source.setFocalPoint([0, 0, 0]);
+  source.setModelBounds([-1, 1, -1, 1, -1, 1]);
+  const mapper = vtkMapper.newInstance();
+  mapper.setInputConnection(source.getOutputPort());
+  const actor = vtkActor.newInstance();
+  actor.setMapper(mapper);
+  return { source, mapper, actor };
+}
+
+export function createCylinder() {
+  const source = vtkCylinderSource.newInstance();
+  source.setCenter([-3, 3, 0]);
+  source.setResolution(100);
+  const actor = vtkActor.newInstance();
+  const mapper = vtkMapper.newInstance();
+
+  actor.setMapper(mapper);
+  mapper.setInputConnection(source.getOutputPort());
+
+  return { source, mapper, actor };
+}
+
+export function createLine() {
+  const source = vtkLineSource.newInstance();
+  source.setPoint1([3, 3, 0]);
+  source.setPoint2([-3, -3, 0]);
+  const actor = vtkActor.newInstance();
+  const mapper = vtkMapper.newInstance();
+
+  actor.getProperty().setPointSize(10);
+  actor.setMapper(mapper);
+  mapper.setInputConnection(source.getOutputPort());
+  return { source, mapper, actor };
+}
+
+export function createPlane() {
+  const source = vtkPlaneSource.newInstance();
+  source.setCenter([0, 3, 0]);
+  const mapper = vtkMapper.newInstance();
+  const actor = vtkActor.newInstance();
+  mapper.setInputConnection(source.getOutputPort());
+  actor.setMapper(mapper);
+  return { source, mapper, actor };
+}
+
+export function createPoint() {
+  const source = vtkPointSource.newInstance({
+    numberOfPoints: 25,
+    radius: 1,
+  });
+  source.setCenter([-2, -2, 0]);
+  // source.setNumberOfPoints(25);
+  // source.setRadius(0.25);
+  const mapper = vtkMapper.newInstance();
+
+  const actor = vtkActor.newInstance();
+  actor.getProperty().setEdgeVisibility(true);
+  actor.getProperty().setPointSize(5);
+
+  mapper.setInputConnection(source.getOutputPort());
+  actor.setMapper(mapper);
+  return { source, mapper, actor };
+}
+
+export function createSphere() {
+  const source = vtkSphereSource.newInstance();
+  source.setCenter([0, -3, 0]);
+  source.setThetaResolution(50);
+  const actor = vtkActor.newInstance();
+  const mapper = vtkMapper.newInstance();
+
+  actor.getProperty().setEdgeVisibility(true);
+
+  mapper.setInputConnection(source.getOutputPort());
+  actor.setMapper(mapper);
   return { source, mapper, actor };
 }

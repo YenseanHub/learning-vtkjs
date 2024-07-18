@@ -6,6 +6,13 @@ import {
   createCircle,
   createArrow,
   createConcentricCylinder,
+  createCube,
+  createCursor3D,
+  createCylinder,
+  createLine,
+  createPlane,
+  createPoint,
+  createSphere,
 } from "./SourcePipeLine";
 
 export default class Viewer {
@@ -37,6 +44,27 @@ export default class Viewer {
   }
   addConcentricCylinder() {
     this.addSource(createConcentricCylinder);
+  }
+  addCube() {
+    this.addSource(createCube);
+  }
+  addCursor3D() {
+    this.addSource(createCursor3D);
+  }
+  addCylinder() {
+    this.addSource(createCylinder);
+  }
+  addLine() {
+    this.addSource(createLine);
+  }
+  addPlane() {
+    this.addSource(createPlane);
+  }
+  addPoint() {
+    this.addSource(createPoint);
+  }
+  addSphere() {
+    this.addSource(createSphere);
   }
   addSource(sourceCb) {
     const { actor, mapper, source } = sourceCb();

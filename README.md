@@ -24,6 +24,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+
+## learning  screenshot
+vtkSource
+![vtkSource](https://github.com/HugeYen/learning-vtkjs/blob/master/learning-vtkjs-app/public/images/vtkSource.png)
+
 ## Learn More
 
 WeChat : HugeYen\
