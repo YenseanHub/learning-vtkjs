@@ -15,7 +15,6 @@ function VTKSource() {
       viewer3D.current.addCone();
       // 添加一个圆形
       viewer3D.current.addCircle();
-      viewer3D.current.resetCamera();
       // 添加一个箭头
       viewer3D.current.addArrow();
       // 添加一个同心圆
@@ -34,6 +33,7 @@ function VTKSource() {
       viewer3D.current.addPoint();
       // 球
       viewer3D.current.addSphere();
+      viewer3D.current.resetCamera();
     }
 
     return () => {
