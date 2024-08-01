@@ -33,6 +33,9 @@ vtkSource
 Filters/WarpScalar
 ![Filters/WarpScalar](./learning-vtkjs-app/public/images/WarpScalar.png)
 
+Filters/Calculator
+![Filters/Calculator](./learning-vtkjs-app/public/images/Calculator.png)
+
 ## Learn More
 
 WeChat : HugeYen\

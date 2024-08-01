@@ -4,6 +4,8 @@ import ErrorPage from "../views/ErrorPage";
 import HelloVTK from "../views/HelloVTK";
 import VTKSource from "../views/vtkSource";
 import WarpScalar from "../views/Filters/WarpScalar";
+import LookUpTable from "../views/Common/LookUpTable";
+import Calculator from "../views/Filters/Calculator";
 
 export const routers = [
   {
@@ -28,6 +30,18 @@ export const routers = [
     name: "WrapScalar",
     element: <WarpScalar/>,
     url: "images/WarpScalar.png",
+  },
+  {
+    path: "/common/lookuptable",
+    name: "LookUpTable",
+    element: <LookUpTable />,
+    url: "images/LookUpTable.png",
+  },
+  {
+    path: "/filters/calculator",
+    name: "Calculator",
+    element: <Calculator />,
+    url: "images/Calculator.png",
   },
   {
     path: "*",
