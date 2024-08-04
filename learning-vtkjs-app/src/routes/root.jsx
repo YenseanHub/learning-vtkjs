@@ -6,6 +6,7 @@ import VTKSource from "../views/vtkSource";
 import WarpScalar from "../views/Filters/WarpScalar";
 import LookUpTable from "../views/Common/LookUpTable";
 import Calculator from "../views/Filters/Calculator";
+import ClipClosedSurface from "../views/Filters/ClipClosedSurface";
 
 export const routers = [
   {
@@ -41,6 +42,12 @@ export const routers = [
     path: "/filters/calculator",
     name: "Calculator",
     element: <Calculator />,
+    url: "images/Calculator.png",
+  },
+  {
+    path: "/filters/ClipClosedSurface",
+    name: "ClipClosedSurface",
+    element: <ClipClosedSurface />,
     url: "images/Calculator.png",
   },
   {
