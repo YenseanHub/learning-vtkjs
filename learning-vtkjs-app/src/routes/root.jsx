@@ -48,7 +48,7 @@ export const routers = [
     path: "/filters/ClipClosedSurface",
     name: "ClipClosedSurface",
     element: <ClipClosedSurface />,
-    url: "images/Calculator.png",
+    url: "images/ClipClosedSurface.png",
   },
   {
     path: "*",

@@ -9,10 +9,11 @@ import vtkMapper from "@kitware/vtk.js/Rendering/Core/Mapper";
 import vtkPlane from "@kitware/vtk.js/Common/DataModel/Plane";
 import vtkClipClosedSurface from "@kitware/vtk.js/Filters/General/ClipClosedSurface";
 import vtkSphereSource from "@kitware/vtk.js/Filters/Sources/SphereSource";
+import Constants from "@kitware/vtk.js/Filters/General/ClipClosedSurface/Constants";
 
 function ClipClosedSurface() {
   const vtkContainerRef = useRef(null);
-
+  const { ScalarMode } = Constants;
   useEffect(() => {
     const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({
       background: [0, 0, 0],
@@ -24,11 +25,11 @@ function ClipClosedSurface() {
     // ----------------------------------------------------------------------------
     // Example code
     // ----------------------------------------------------------------------------
-
+    // 不同面的颜色设置
     const NAMED_COLORS = {
-      BANANA: [227 / 255, 207 / 255, 87 / 255],
-      TOMATO: [255 / 255, 99 / 255, 71 / 255],
-      SANDY_BROWN: [244 / 255, 164 / 255, 96 / 255],
+      BANANA: [0.5, 0.2, 1],
+      TOMATO: [0.5, 0.1, 1],
+      SANDY_BROWN: [0, 0.2, 1],
     };
 
     const cam = vtkCamera.newInstance();
@@ -42,14 +43,14 @@ function ClipClosedSurface() {
       thetaResolution: 60,
       phiResolution: 31,
     });
-
+    // 模型包围盒的计算
     const bounds = source.getOutputData().getBounds();
     const center = [
       (bounds[1] + bounds[0]) / 2,
       (bounds[3] + bounds[2]) / 2,
       (bounds[5] + bounds[4]) / 2,
     ];
-    const center2 = [center[0] - 0.1, center[1], center[2]];
+    const center2 = [center[0] - 0.3, center[1], center[2]];
     const planes = [];
     const plane1 = vtkPlane.newInstance({
       origin: center2,
@@ -68,26 +69,28 @@ function ClipClosedSurface() {
     planes.push(plane3);
 
     const filter = vtkClipClosedSurface.newInstance({
-      clippingPlanes: planes,
-      activePlaneId: 2,
-      clipColor: NAMED_COLORS.BANANA,
-      baseColor: NAMED_COLORS.TOMATO,
-      activePlaneColor: NAMED_COLORS.SANDY_BROWN,
+      clippingPlanes: planes, // 裁切平面
+      activePlaneId: 0, // 当前激活的裁切平面
+      clipColor: NAMED_COLORS.BANANA, // 裁切后的颜色 无效-只有红蓝两种颜色
+      baseColor: NAMED_COLORS.TOMATO, // 原始模型颜色 无效
+      activePlaneColor: NAMED_COLORS.SANDY_BROWN, // 当前激活的裁切平面的颜色 无效
+      scalarMode: ScalarMode.COLORS,
       passPointData: false,
     });
     filter.setInputConnection(source.getOutputPort());
-    filter.setScalarModeToColors();
+    // filter.setScalarModeToColors();
     filter.update();
     // output part
     const filterData = filter.getOutputData();
 
     // Create actor
     const actor = vtkActor.newInstance();
-    actor.getProperty().setEdgeVisibility(true);
+    // actor.getProperty().setEdgeVisibility(true);
     renderer.addActor(actor);
 
     const mapper = vtkMapper.newInstance({
-      interpolateScalarBeforeMapping: true,
+      interpolateScalarBeforeMapping: false,
+      useLookupTableScalarRange: false,
     });
     actor.setMapper(mapper);
     // mapper filterData
