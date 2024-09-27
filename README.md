@@ -36,6 +36,15 @@ Filters/WarpScalar
 Filters/Calculator
 ![Filters/Calculator](./learning-vtkjs-app/public/images/Calculator.png)
 
+Filters/ContourLoopExtraction
+![Filters/ContourLoopExtraction](./learning-vtkjs-app/public/images/ContourLoopExtraction.png)
+
+Filters/ContourTriangulator
+![Filters/ContourTriangulator](./learning-vtkjs-app/public/images/ContourTriangulator.png)
+
+Filters/ImageCropFilter
+![Filters/ImageCropFilter](./learning-vtkjs-app/public/images/ImageCropFilter.png)
+
 ## Learn More
 
 WeChat : HugeYen\

@@ -7,6 +7,9 @@ import WarpScalar from "../views/Filters/WarpScalar";
 import LookUpTable from "../views/Common/LookUpTable";
 import Calculator from "../views/Filters/Calculator";
 import ClipClosedSurface from "../views/Filters/ClipClosedSurface";
+import ContourLoopExtraction from "../views/Filters/ContourLoopExtraction";
+import ContourTriangulator from "../views/Filters/ContourTriangulator";
+import ImageCropFilter from "../views/Filters/ImageCropFilter";
 
 export const routers = [
   {
@@ -49,6 +52,24 @@ export const routers = [
     name: "ClipClosedSurface",
     element: <ClipClosedSurface />,
     url: "images/ClipClosedSurface.png",
+  },
+  {
+    path: "/filters/ContourLoopExtraction",
+    name: "ContourLoopExtraction",
+    element: <ContourLoopExtraction />,
+    url: "images/ContourLoopExtraction.png",
+  },
+  {
+    path: "/filters/ContourTriangulator",
+    name: "ContourTriangulator",
+    element: <ContourTriangulator />,
+    url: "images/ContourTriangulator.png",
+  },
+  {
+    path: "/filters/ImageCropFilter",
+    name: "ImageCropFilter",
+    element: <ImageCropFilter />,
+    url: "images/ImageCropFilter.png",
   },
   {
     path: "*",
