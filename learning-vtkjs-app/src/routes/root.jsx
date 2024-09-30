@@ -10,6 +10,10 @@ import ClipClosedSurface from "../views/Filters/ClipClosedSurface";
 import ContourLoopExtraction from "../views/Filters/ContourLoopExtraction";
 import ContourTriangulator from "../views/Filters/ContourTriangulator";
 import ImageCropFilter from "../views/Filters/ImageCropFilter";
+import ImageMarchingCubes from "../views/Filters/ImageMarchingCubes";
+import ImplicitBoolean from "../views/Common/ImplicitBoolean";
+import OutlineFilter from "../views/Filters/OutlineFilter";
+import ImageMarchingSquares from "../views/Filters/ImageMarchingSquares";
 
 export const routers = [
   {
@@ -70,6 +74,30 @@ export const routers = [
     name: "ImageCropFilter",
     element: <ImageCropFilter />,
     url: "images/ImageCropFilter.png",
+  },
+  {
+    path: "/filters/ImplicitBoolean",
+    name: "ImplicitBoolean",
+    element: <ImplicitBoolean />,
+    url: "images/ImplicitBoolean.png",
+  },
+  {
+    path: "/filters/OutlineFilter",
+    name: "OutlineFilter",
+    element: <OutlineFilter />,
+    url: "images/OutlineFilter.png",
+  },
+  {
+    path: "/filters/ImageMarchingCubes",
+    name: "ImageMarchingCubes",
+    element: <ImageMarchingCubes />,
+    url: "images/ImageMarchingCubes.png",
+  },
+  {
+    path: "/filters/ImageMarchingSquares",
+    name: "ImageMarchingSquares",
+    element: <ImageMarchingSquares />,
+    url: "images/ImageMarchingSquares.png",
   },
   {
     path: "*",
