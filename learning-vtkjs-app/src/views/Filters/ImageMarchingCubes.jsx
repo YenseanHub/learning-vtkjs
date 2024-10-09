@@ -206,7 +206,7 @@ function ImageMarchingCubes() {
               <span>Compute Normals</span>
               <input
                 type="checkbox"
-                value={state.computeNormals}
+                checked={state.computeNormals}
                 onChange={(e) => {
                   updateParam("computeNormals", {
                     computeNormals: e.target.checked,
@@ -220,7 +220,7 @@ function ImageMarchingCubes() {
               <span>Merge Points</span>
               <input
                 type="checkbox"
-                value={state.mergePoints}
+                checked={state.mergePoints}
                 onChange={(e) => {
                   updateParam("mergePoints", {
                     mergePoints: e.target.checked,
