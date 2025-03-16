@@ -77,6 +77,7 @@ function ClipClosedSurface() {
       scalarMode: ScalarMode.COLORS,
       passPointData: false,
     });
+    
     filter.setInputConnection(source.getOutputPort());
     // filter.setScalarModeToColors();
     filter.update();

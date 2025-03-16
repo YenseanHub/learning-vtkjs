@@ -47,6 +47,7 @@ function ContourLoopExtraction() {
   const updatePlaneAndGenerateLoops = () => {
     const { plane, renderWindow, cutter, renderer } = context.current;
     // Update plane based on the current state
+    // 原点和法线方向
     plane.setOrigin(state.originX, state.originY, state.originZ);
     plane.setNormal(state.normalX, state.normalY, state.normalZ);
 
@@ -70,6 +71,7 @@ function ContourLoopExtraction() {
     let index = 0;
 
     // Preserve the first actor (dragon) and remove any additional actors
+    // 之前的线移除
     const actors = renderer.getActors();
     for (let i = 1; i < actors.length; i++) {
       renderer.removeActor(actors[i]);
@@ -77,6 +79,7 @@ function ContourLoopExtraction() {
 
     // Extract points from each loop
     for (let i = 0; i < numberOfLoops; i++) {
+      // 索引第一个是count，后面是点坐标索引
       const polygonPointCount = loops[index];
       const polygonPointIndices = loops.slice(
         index + 1,
@@ -85,14 +88,15 @@ function ContourLoopExtraction() {
 
       const polygon = [];
       const pointList = [];
-      polygonPointIndices.forEach((pointIndex) => {
+      polygonPointIndices.forEach((pointIndex, index) => {
         const point = [
           points[pointIndex * 3],
           points[pointIndex * 3 + 1],
           points[pointIndex * 3 + 2],
         ];
         polygon.push(...point);
-        pointList.push(point);
+        // pointList.push(point);
+        pointList.push(index);
       });
 
       flatPointsAll.push(polygon);
@@ -107,7 +111,8 @@ function ContourLoopExtraction() {
       const flatPoints = flatPointsAll[loopIndex];
 
       // Create a list of point indices to define the lines
-      const pointIndexes = Float32Array.from(pointList.map((_, ind) => ind));
+      // const pointIndexes = Float32Array.from(pointList.map((_, ind) => ind));
+      const pointIndexes = Float32Array.from(pointList);
       const linePoints = Float32Array.from(flatPoints);
 
       pointsData.setData(linePoints, 3);
@@ -158,6 +163,7 @@ function ContourLoopExtraction() {
             sceneImporter.getScene()[0].actor.setVisibility(false);
 
             const source = sceneImporter.getScene()[0].source;
+            // cutter和daragonMapper都需要source
             cutter.setInputConnection(source.getOutputPort());
             dragonMapper.setInputConnection(source.getOutputPort());
             renderer.resetCamera();
@@ -181,6 +187,7 @@ function ContourLoopExtraction() {
 
     const plane = vtkPlane.newInstance();
     const cutter = vtkCutter.newInstance();
+    // 切割平面
     cutter.setCutFunction(plane);
 
     const dragonMapper = vtkMapper.newInstance();
