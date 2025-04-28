@@ -64,6 +64,10 @@ Volume/MultiSliceImageMapper
 
 Volume/TestVolumeTypes
 ![Filters/TestVolumeTypes](./learning-vtkjs-app/public/images/TestVolumeTypes.png)
+
+Filters/ThresholdPoints
+![Filters/ThresholdPoints](./learning-vtkjs-app/public/images/ThresholdPoints.png)
+
 ## Learn More
 
 WeChat : HugeYen\
