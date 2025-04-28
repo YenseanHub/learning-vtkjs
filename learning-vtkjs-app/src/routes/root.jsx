@@ -22,8 +22,11 @@ import TubeFilter from "../views/Filters/TubeFilter";
 import Cutter from "../views/Filters/Cutter";
 import PolyDataNormals from "../views/Filters/PolyDataNormals";
 import WindowedSincPolyDataFilter from "../views/Filters/WindowedSincPolyDataFilter";
+import ThresholdPoints from "../views/Filters/ThresholdPoints";
 import MultiSliceImageMapper from "../views/Volume/MultiSliceImageMapper";
 import TestVolumeTypes from "../views/Volume/TestVolumeTypes";
+import DepthTest from "../views/Rendering/DepthTest";
+import TimeSeries from "../views/GeometryRendering/TimeSeries";
 
 export const routers = [
   {
@@ -158,6 +161,12 @@ export const routers = [
     url: "images/WindowedSincPolyDataFilter.png",
   },
   {
+    path: "/filters/ThresholdPoints",
+    name: "ThresholdPoints",
+    element: <ThresholdPoints />,
+    url: "images/ThresholdPoints.png",
+  },
+  {
     path: "/volume/MultiSliceImageMapper",
     name: "MultiSliceImageMapper",
     element: <MultiSliceImageMapper />,
@@ -168,6 +177,18 @@ export const routers = [
     name: "TestVolumeTypes",
     element: <TestVolumeTypes />,
     url: "images/TestVolumeTypes.png",
+  },
+  {
+    path: "/rendering/DepthTest",
+    name: "DepthTest",
+    element: <DepthTest />,
+    url: "images/DepthTest.png",
+  },
+  {
+    path: "/georendering/TimeSeries",
+    name: "TimeSeries",
+    element: <TimeSeries />,
+    url: "images/TimeSeries.png",
   },
   {
     path: "*",
