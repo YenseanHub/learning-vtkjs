@@ -15,7 +15,6 @@ import vtkSphereSource from "@kitware/vtk.js/Filters/Sources/SphereSource";
 function ImageMarchingSquares() {
   const vtkContainerRef = useRef(null);
   const context = useRef(null);
-  const { Operation } = vtkImplicitBoolean;
   const [state, setState] = useState({
     slicingMode: 0,
     volumeResolution: 50,

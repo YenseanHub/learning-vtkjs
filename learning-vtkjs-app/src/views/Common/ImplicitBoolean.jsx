@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
 // Load the rendering pieces we want to use (for both WebGL and WebGPU)
 import "@kitware/vtk.js/Rendering/Profiles/Geometry";
@@ -14,7 +14,7 @@ import vtkSphere from "@kitware/vtk.js/Common/DataModel/Sphere";
 
 function ImplicitBoolean() {
   const vtkContainerRef = useRef(null);
-  const context = useRef(null);
+  // const context = useRef(null);
   const { Operation } = vtkImplicitBoolean;
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function ImplicitBoolean() {
     // Build pipeline. Boolean together some implicit functions and then sample, isosurface them
     const pLeft = vtkSphere.newInstance({
       center: [-6.0, 0, 0],
-      radius: 0.6,
+      radius: 0.8,
       
     });
     const pRight = vtkPlane.newInstance({

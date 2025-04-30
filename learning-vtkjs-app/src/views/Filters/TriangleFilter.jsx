@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
 // Load the rendering pieces we want to use (for both WebGL and WebGPU)
 import "@kitware/vtk.js/Rendering/Profiles/Geometry";
@@ -11,7 +11,7 @@ import vtk2DShape from "@kitware/vtk.js/Filters/Sources/Arrow2DSource";
 
 function TriangleFilter() {
   const vtkContainerRef = useRef(null);
-  const context = useRef(null);
+  // const context = useRef(null);
 
   useEffect(() => {
     const fullScreenRenderer = vtkFullScreenRenderWindow.newInstance({

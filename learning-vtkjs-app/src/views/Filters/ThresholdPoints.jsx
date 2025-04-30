@@ -83,9 +83,9 @@ function ThresholdPoints() {
     });
     const renderer = fullScreenRenderer.getRenderer();
     const renderWindow = fullScreenRenderer.getRenderWindow();
-// ----------------------------------------------------------------------------
-// Example code
-// ----------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------
+    // Example code
+    // ----------------------------------------------------------------------------
 
     const lookupTable = vtkLookupTable.newInstance({ hueRange: [0.666, 0] });
     const reader = vtkHttpDataSetReader.newInstance({ fetchGzip: true });

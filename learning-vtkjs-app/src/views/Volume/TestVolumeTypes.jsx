@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 // Load the rendering pieces we want to use (for both WebGL and WebGPU)
 import "@kitware/vtk.js/Rendering/Profiles/Volume";
 
@@ -210,7 +210,7 @@ function TestVolumeTypes() {
     sliceRenderer.resetCamera();
 
     renderWindow.render();
-  }, []);
+  });
 
   return (
     <div>

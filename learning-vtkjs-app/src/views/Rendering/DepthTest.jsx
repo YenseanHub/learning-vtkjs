@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 // Load the rendering pieces we want to use (for both WebGL and WebGPU)
 import "@kitware/vtk.js/Rendering/Profiles/Geometry";
 import "@kitware/vtk.js/Rendering/Profiles/Molecule"; // for vtkSphereMapper
@@ -187,9 +187,9 @@ function DepthTest() {
       },
       resize: (w, h) => {
         console.log(`Debug canvas resize: [${w}, ${h}]`);
-        const aspect = w / h;
-        const sw = w * debugCanvasSize;
-        const sh = sw / aspect;
+        // const aspect = w / h;
+        // const sw = w * debugCanvasSize;
+        // const sh = sw / aspect;
         debugCanvas.setAttribute("width", `${w}px`);
         debugCanvas.setAttribute("height", `${h}px`);
 

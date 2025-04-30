@@ -10,7 +10,7 @@ import vtkOutlineFilter from "@kitware/vtk.js/Filters/General/OutlineFilter";
 import vtkMapper from "@kitware/vtk.js/Rendering/Core/Mapper";
 import * as vtkMath from "@kitware/vtk.js/Common/Core/Math";
 
-function ImageMarchingSquares() {
+function OutlineFilter() {
   const vtkContainerRef = useRef(null);
   const context = useRef(null);
 
@@ -53,7 +53,7 @@ function ImageMarchingSquares() {
     const outline = vtkOutlineFilter.newInstance();
 
     const cone = vtkConeSource.newInstance({
-      height: 0.7,
+      height: 0.8,
       radius: 0.05,
       resolution: 80,
     });
@@ -63,8 +63,8 @@ function ImageMarchingSquares() {
     actorCone.setMapper(mapperCone);
     renderer.addActor(actorCone);
     
-    outline.setInputConnection(cone.getOutputPort());
     outline.setInputConnection(pointSource.getOutputPort());
+    outline.addInputConnection(cone.getOutputPort());
 
     const pointActor = addRepresentation("pointSource", pointSource, {
       pointSize: 5,
@@ -147,4 +147,4 @@ function ImageMarchingSquares() {
   );
 }
 
-export default ImageMarchingSquares;
+export default OutlineFilter;

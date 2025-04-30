@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 // Load the rendering pieces we want to use (for both WebGL and WebGPU)
 import "@kitware/vtk.js/Rendering/Profiles/Volume";
 
-import macro from "@kitware/vtk.js/macros";
 import vtkFullScreenRenderWindow from "@kitware/vtk.js/Rendering/Misc/FullScreenRenderWindow";
 
 // Force DataAccessHelper to have access to various data source
@@ -17,7 +16,6 @@ import vtkImageSlice from "@kitware/vtk.js/Rendering/Core/ImageSlice";
 import { BaseUrlPross } from "../Utils/UrlUtils";
 function MultiSliceImageMapper() {
   const vtkContainerRef = useRef(null);
-  const context = useRef(null);
   function updateColorLevel(imageActor, colorLevel) {
     imageActor.getProperty().setColorLevel(colorLevel);
   }
@@ -48,7 +46,7 @@ function MultiSliceImageMapper() {
       .then(() => {
         const data = reader.getOutputData();
         const dataRange = data.getPointData().getScalars().getRange();
-        const extent = data.getExtent();
+        // const extent = data.getExtent();
 
         const imageMapperK = vtkImageMapper.newInstance();
         imageMapperK.setInputData(data);
